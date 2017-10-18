@@ -1,6 +1,17 @@
 
-    html,body {height: 100%;}
-    body {padding: 0px; margin:0px; background:url(image.jpg) ; background-position: center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;}
+    html,body {
+      height: 100%;
+    }
+
+    body {
+      padding: 0px;
+      margin:0px;
+      background-image: url(image.jpg);
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
 
     .search-wrapper {
         position: absolute;
