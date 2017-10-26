@@ -1,5 +1,6 @@
 
-from flask import Flask, render_template, requests
+from flask import Flask, render_template
+import requests
 
 app = Flask(__name__, static_url_path = "",static_folder = "")
 
@@ -8,7 +9,7 @@ app = Flask(__name__, static_url_path = "",static_folder = "")
 @app.route('/')
 def index_html():
     return render_template('index.html')
-<<<<<<< HEAD
+
 
 params= {
   "api_key": "AIzaSyBR8d23Es_KgpAqNFDDdPFRYZsk2Z5jKWo",
@@ -27,9 +28,5 @@ print(r.text)
 
 
 
-
-
-
 if __name__ == '__main__':
     app.run(debug = True)
-
