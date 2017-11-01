@@ -20,7 +20,7 @@
 
     <body>
       <h1>FILMÄLSKAREN</h1>
-        <form onsubmit="submitFn(this, event);">
+        <form action=/movie methods="GET">
             <div class="search-wrapper">
                 <div class="input-holder">
                     <input type="text" class="search-input" placeholder="Sök filmtitel" />
@@ -28,7 +28,6 @@
                 </div>
                 <span class="close" onclick="searchToggle(this, event);"></span>
                 <div class="result-container">
-
                 </div>
             </div>
         </form>

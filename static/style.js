@@ -1,3 +1,4 @@
+// sköter den interaktiva sökfunktionen
 function searchToggle(obj, evt){
     var container = $(obj).closest('.search-wrapper');
 
@@ -7,26 +8,9 @@ function searchToggle(obj, evt){
     }
     else if(container.hasClass('active') && $(obj).closest('.input-holder').length == 0){
           container.removeClass('active');
-          // clear input
+          // visar sökrutan och inputs kan skrivas
           container.find('.search-input').val('');
-          // clear and hide result container when we press close
+          // stänger ner sökrutan och blir en knapp
           container.find('.result-container').fadeOut(100, function(){$(this).empty();});
     }
-}
-
-function submitFn(obj, evt){
-    value = $(obj).find('.search-input').val().trim();
-
-    _html = "Du skrev in: ";
-    if(!value.length){
-        _html = "Skriv något i sökfältet!";
-    }
-    else{
-        _html += "<b>" + value + "</b>";
-    }
-
-    $(obj).find('.result-container').html('<span>' + _html + '</span>');
-    $(obj).find('.result-container').fadeIn(100);
-
-    evt.preventDefault();
 }

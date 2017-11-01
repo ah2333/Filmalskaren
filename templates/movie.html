@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Filmälskaren</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="static/style.js"></script>
+
+        <meta property="og:url"           content="http://demo.icanbecreative.com/css3-animated-search-box/" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="CSS3 Animated Search Box" />
+        <meta property="og:description"   content="Your description" />
+        <meta property="og:image"         content="http://demo.icanbecreative.com/css3-animated-search-box/featured.jpg" />
+
+    </head>
+
+    <body>
+      <h1>FILMÄLSKAREN</h1>
+      {% for x in movie %}
+      {{x['title']}}
+      {% endfor %}
+      <footer><p>Design from icanbecreative.com</p></footer>
+    </body>
+
+</html>
