@@ -1,46 +1,34 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 import json
 
-#Länkar våra statiska filer
+
 app = Flask(__name__, static_url_path = "",static_folder = "")
 
-'''Vår startsida'''
+@app.route('/movie', methods=['POST'])
+def movie_():
+    search = request.form['search']
+    r = requests.get('http://www.omdbapi.com/?t=' +search+ '&apikey=a7e52ea9')
+    movies = r.json()
+    trailer_key = trailer_(movies)
+    return render_template('movie.html', trailer_key=trailer_key, movies = movies)
+
+def trailer_(movies):
+    search = request.form['search']
+    trailer = search + 'official%20trailer'
+    r = requests.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyBVpfQAOe4tdWlAsp4GTM0fCBtYwfYvqXY&q=' +trailer+movies['Year']+'&type=video&videoDuration=any&videoEmbaddable=true&part=snippet&maxResults=1&videoDefinition=high')
+    data = json.loads(r.text)
+    for item in data['items']:
+        items = ((item['id']))
+        trailer_key = ((items['videoId']))
+        return trailer_key
+
+
 @app.route('/')
 def index_html():
     return render_template('index.html')
 
-'''Sidan som kommer upp vid sökning av film, med datan'''
-@app.route('/movie', methods=['GET'])
-def movie_html():
-
-#Våra parametrar som vi vill hämta
-    params = {
-    "api_key": "bb0755d98c763275608828339b9368b2",
-    "query": "",
-    "year": "4"
-    }
-
-#Hämtar parametrarna genom URL-länken och visas i json
-    r = requests.get('https://api.themoviedb.org/3/search/movie', params=params)
-    r.json()
-
-
-    params= {
-      "q": "",
-      "type": 'video',
-      "videoDuration": 'short',
-      "videoEmbeddable": 'true',
-      "part": 'snippet',
-      "maxResults": 3
-      }
-
-    r = requests.get('https://www.googleapis.com/youtube/v3/search', params=params)
-    r.json()
-
-#Returdatan blir en html-sida som heter movie.html med data sparad i variabeln "movie"
-    return render_template('movie.html', movie = r)
-
 
 if __name__ == '__main__':
     app.run(debug = True)
+
